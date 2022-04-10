@@ -17,7 +17,7 @@ def is_it_down(url):
 		res = urllib.request.urlopen(url)
 		t2 = round(time.time() * 1000)
 		# print(res.getcode())
-		print(res.geturl())
+		# print(res.geturl())
 		if res.geturl() != url:
 			print(f"[Redirected] {url} → {res.geturl()}")
 			url = res.geturl()
@@ -37,8 +37,14 @@ def is_it_down(url):
 		print(f"{url} is not a valid URL.")
 
 
-print("Welcome to IsItDown.py!")
-print("Please write a URL or URLs you want to check. (separated by comma)")
+def welcome():
+	os.system('cls' if os.name == 'nt' else 'clear')
+	print("Welcome to IsItDown.py!")
+	print("Please write a URL or URLs you want to check. (separated by comma)")
+
+
+welcome()
+
 loop = True
 while loop:
 	url_list = [i for i in input().split(",")]
@@ -47,7 +53,7 @@ while loop:
 		print("Goodbye!")
 		break
 	if url_list == ["clear"] or url_list == ["cls"]:
-		os.system('cls' if os.name == 'nt' else 'clear')
+		welcome()
 		continue
 	if url_list == ["debug"]:
 		debuglist = open("debuglist.txt", "r")
